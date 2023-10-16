@@ -10,6 +10,7 @@ import SwiftUI
 struct CityView: View {
     
     @State private var screenState: ScreenState = .initial
+    @State private var viewModel = ConditionsViewModel()
     
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var useCases: UseCaseContainer
@@ -34,39 +35,26 @@ struct CityView: View {
                 Text(appState.selectedCity?.country ?? "")
                 Spacer()
                 Group {
-                    Text(appState.conditions.first?.text ?? "")
+                    Text(viewModel.text)
                         .font(.system(size: 30, weight: .bold))
                         .padding(30)
-                    if let value = appState.conditions.first?.temperature?.value, let unit = appState.conditions.first?.temperature?.unit {
-                        Text(String(format: "%.1f °%@", value, unit))
+                    Text(viewModel.temperature)
                             .font(.system(size: 30, weight: .bold))
                             .padding(5)
-                    }
-                    if let value = appState.conditions.first?.feelsLike?.value, let unit = appState.conditions.first?.feelsLike?.unit {
-                        Text(String(format: "Feeels like %.1f °%@", value, unit))
+                    Text(viewModel.feelsLike)
                             .padding(5)
-                    }
                 }
                 Spacer()
                 Group {
-                    if let value = appState.conditions.first?.visibility?.value, let unit = appState.conditions.first?.visibility?.unit {
-                        Text(String(format: "Visibility %.1f %@", value, unit))
+                    Text(viewModel.visibility)
                             .padding(5)
-                    }
-                    if let value = appState.conditions.first?.precipitation?.value, let unit = appState.conditions.first?.precipitation?.unit {
-                        Text(String(format: "Precipitation %.1f %@", value, unit))
+                    Text(viewModel.precipitation)
                             .padding(5)
-                    }
-                    if let time = appState.conditions.first?.time {
-                        let formatter = DateFormatter()
-                        //formatter.dateFormat = "HH:mm dd.MM.yyyy"
-                    //    Text(formatter.date(from: time) ?? "")
-                    //        .padding(5)
-                    }
+                        Text(viewModel.time)
                 }
                 Spacer()
-                if let link = appState.conditions.first?.link, let URL = URL(string: link) {
-                    Link("Open in safari", destination: URL)
+                if let link = viewModel.link {
+                    Link("Open in safari", destination: link)
                 }
             }
         }
@@ -85,5 +73,11 @@ struct CityView: View {
                 }
             }
         })
+        .onChange(of: appState.conditions) { newValue in
+            guard let newConditions = newValue.first else {
+                return
+            }
+            viewModel = ConditionsViewModelMapper.map(model: newConditions)
+        }
     }
 }

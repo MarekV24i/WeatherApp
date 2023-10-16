@@ -32,6 +32,8 @@
 		EAD860DA2ADB1649003B277C /* ConditionsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860D92ADB1649003B277C /* ConditionsMapper.swift */; };
 		EAD860DC2ADC1610003B277C /* GetConditionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860DB2ADC1610003B277C /* GetConditionsUseCase.swift */; };
 		EAD860DE2ADC1887003B277C /* ScreenState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860DD2ADC1887003B277C /* ScreenState.swift */; };
+		EAD860E12ADD439E003B277C /* ConditionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860E02ADD439E003B277C /* ConditionsViewModel.swift */; };
+		EAD860E32ADD44CF003B277C /* ConditionsViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860E22ADD44CF003B277C /* ConditionsViewModelMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		EAD860DB2ADC1610003B277C /* GetConditionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConditionsUseCase.swift; sourceTree = "<group>"; };
 		EAD860DD2ADC1887003B277C /* ScreenState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenState.swift; sourceTree = "<group>"; };
 		EAD860DF2ADD3AFE003B277C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EAD860E02ADD439E003B277C /* ConditionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewModel.swift; sourceTree = "<group>"; };
+		EAD860E22ADD44CF003B277C /* ConditionsViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewModelMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +206,8 @@
 				EAD8608B2AD959C9003B277C /* SearchView.swift */,
 				EAD860B52AD9B396003B277C /* CityView.swift */,
 				EAD860DD2ADC1887003B277C /* ScreenState.swift */,
+				EAD860E02ADD439E003B277C /* ConditionsViewModel.swift */,
+				EAD860E22ADD44CF003B277C /* ConditionsViewModelMapper.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -390,11 +396,13 @@
 				EAD860BC2ADB012A003B277C /* RequestDispatcher.swift in Sources */,
 				EAD860B62AD9B396003B277C /* CityView.swift in Sources */,
 				EAD860C92ADB0637003B277C /* UseCaseContainer.swift in Sources */,
+				EAD860E12ADD439E003B277C /* ConditionsViewModel.swift in Sources */,
 				EAD860D42ADB12C3003B277C /* SearchCityUseCase.swift in Sources */,
 				EAD860DA2ADB1649003B277C /* ConditionsMapper.swift in Sources */,
 				EAD860D12ADB0D77003B277C /* CityMapper.swift in Sources */,
 				EAD860BA2ADB00B1003B277C /* NetworkError.swift in Sources */,
 				EAD860C22ADB03E4003B277C /* NetworkRepository.swift in Sources */,
+				EAD860E32ADD44CF003B277C /* ConditionsViewModelMapper.swift in Sources */,
 				EAD860B42AD95C55003B277C /* Router.swift in Sources */,
 				EAD8608A2AD959C9003B277C /* WeatherApp.swift in Sources */,
 			);

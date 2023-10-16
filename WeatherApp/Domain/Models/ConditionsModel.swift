@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct ConditionsModel {
+struct ConditionsModel: Equatable {
+    static func == (lhs: ConditionsModel, rhs: ConditionsModel) -> Bool {
+        lhs.time == rhs.time && lhs.text == rhs.text && lhs.link == rhs.link
+    }
     
     struct UnitsData {
         var value: Double?
