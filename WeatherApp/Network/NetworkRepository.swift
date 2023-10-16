@@ -6,9 +6,8 @@
 //
 
 protocol NetworkRepositoryProtocol {
-
-    func searchCity(term: String?) async throws -> [CityEntity]
     
+    func searchCity(term: String?) async throws -> [CityEntity]
     func currentCondtions(cityKey: String) async throws -> [ConditionsEntity]
 }
 

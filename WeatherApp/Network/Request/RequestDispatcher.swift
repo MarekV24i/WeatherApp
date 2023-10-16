@@ -16,7 +16,6 @@ class RequestDispatcher {
         components.queryItems = apiRouter.parameters
         
         guard let url = components.url else { throw NetworkError.badUrl }
-        print(url)
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = apiRouter.method
         let session = URLSession(configuration: .default)

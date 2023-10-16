@@ -6,6 +6,7 @@
 //
 
 enum NetworkError: Error {
+    
     case badUrl
     case noData
 }

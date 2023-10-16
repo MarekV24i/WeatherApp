@@ -8,10 +8,9 @@
 import Foundation
 
 enum Router {
+    
     case searchCity(term: String)
     case currentconditions(locationKey: String)
-
-    //https://developer.accuweather.com/accuweather-locations-api/apis/get/locations/v1/cities/autocomplete
     
     var apiKey: URLQueryItem {
         return URLQueryItem(name: "apikey", value: "fqd9KZE3yuxP6JBLF85wnl4lis8qoUCX")

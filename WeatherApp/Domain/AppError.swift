@@ -6,6 +6,7 @@
 //
 
 enum AppError: Error {
+    
     case citySearchFailed
     case conditionsLoadFailed
 }
