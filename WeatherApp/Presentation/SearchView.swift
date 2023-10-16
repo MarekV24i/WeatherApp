@@ -10,8 +10,7 @@ import SwiftUI
 struct SearchView: View {
     
     @State var textfiledString = ""
-
-    @State private var screenState: ScreenState = .loading
+    @State private var screenState: ScreenState = .initial
     
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var useCases: UseCaseContainer
@@ -19,33 +18,39 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Section {
-                    TextField("search_hint",
-                              text: $textfiledString)
-                    .onChange(of: textfiledString) { newValue in
-                        guard !textfiledString.isEmpty else {
-                            return
-                        }
-                        Task.init {
-                            do {
-                                try await useCases.searchCity.execute(term: textfiledString)
-                            } catch {
-                                print("Fetching establishments failed with error \(error)")
-                            }
-                        }
-                    }
-                    .padding(10)
-                }
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(10)
-                .padding(.top, 30)
-                
-                Text("origin_airport")
+                Text("Search city")
                     .font(.system(size: 20, weight: .semibold))
                     .padding(.top, 20)
                     .padding(.bottom, 10)
                 
-                ZStack {
+                TextField("Type to search for city", text: $textfiledString)
+                .onChange(of: textfiledString) { _ in
+                    guard !textfiledString.isEmpty else {
+                        screenState = .initial
+                        return
+                    }
+                    screenState = .loading
+                    Task.init {
+                        do {
+                            try await useCases.searchCity.execute(term: textfiledString)
+                            screenState = appState.cities.isEmpty ? .empty : .content
+                        } catch {
+                            screenState = .empty
+                        }
+                    }
+                }
+                .padding(10)
+                .background(.gray.opacity(0.3))
+                .cornerRadius(10)
+            
+                switch screenState {
+                case .initial:
+                    Spacer()
+                case .loading:
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                case .content:
                     List(appState.cities, id: \.id) { city in
                         NavigationLink {
                             CityView().onAppear{
@@ -56,17 +61,12 @@ struct SearchView: View {
                         }
                     }
                     .listStyle(.plain)
-                    
-                    if screenState == .loading {
-                        ProgressView()
-                    } else if screenState == .empty {
-                        Text("empty_airports")
-                    }
+                case .empty:
+                    Spacer()
+                    Text("Nothing was found")
+                    Spacer()
                 }
-                .font(.system(size: 20, weight: .semibold))
-                .padding(.top, 20)
             }
-            .environmentObject(appState)
             .padding()
         }
     }

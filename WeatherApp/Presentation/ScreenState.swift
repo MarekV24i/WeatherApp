@@ -6,7 +6,7 @@
 //
 
 enum ScreenState {
-    case notSetup
+    case initial
     case empty
     case loading
     case content
