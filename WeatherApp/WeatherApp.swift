@@ -9,7 +9,9 @@ import SwiftUI
 
 @main
 struct WeatherApp: App {
-    private let appState = AppState()
+    
+    @StateObject var appState = AppState()
+
     var body: some Scene {
         WindowGroup {
             SearchView().environmentObject(appState).environmentObject(UseCaseContainer(repository: NetworkRepository(), appState: appState))
