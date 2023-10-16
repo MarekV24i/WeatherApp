@@ -8,9 +8,10 @@
 import SwiftUI
 
 class UseCaseContainer: ObservableObject {
-    let selectCity: SelectCityUseCaseProtocol
-    let searchCity: SearchCityUseCaseProtocol
-    let getConditions: GetConditionsUseCaseProtocol
+    
+    @Published var selectCity: SelectCityUseCaseProtocol
+    @Published var searchCity: SearchCityUseCaseProtocol
+    @Published var getConditions: GetConditionsUseCaseProtocol
     
     init(repository: NetworkRepository, appState: AppState) {
         self.selectCity = SelectCityUseCase(appState: appState)
