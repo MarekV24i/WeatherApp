@@ -8,7 +8,9 @@
 import Foundation
 
 struct CityModel: Equatable {
+    
     var id = UUID()
     var key: String?
     var name: String?
+    var country: String?
 }

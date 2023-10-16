@@ -7,7 +7,11 @@
 
 struct CityEntity: Codable {
     
+    struct Country: Codable {
+        var LocalizedName: String?
+    }
+    
     var Key: String?
     var LocalizedName: String?
-    
+    var Country: Country?
 }
