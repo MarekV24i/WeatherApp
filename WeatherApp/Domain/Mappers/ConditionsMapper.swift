@@ -5,6 +5,8 @@
 //  Created by Marek on 14.10.2023.
 //
 
+import Foundation
+
 class ConditionsMapper {
     
     static func map(entity: ConditionsEntity) -> ConditionsModel {
@@ -14,7 +16,7 @@ class ConditionsMapper {
         }
         
          return ConditionsModel(
-            time: entity.LocalObservationDateTime,
+            time: ISO8601DateFormatter().date(from: entity.LocalObservationDateTime ?? ""),
             text: entity.WeatherText,
             temperature: getUnitsData(entity.Temperature),
             feelsLike: getUnitsData(entity.ApparentTemperature),
@@ -23,6 +25,7 @@ class ConditionsMapper {
             link: entity.MobileLink
          )
     }
+    
     
 }
 

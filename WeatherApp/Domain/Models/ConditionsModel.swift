@@ -5,6 +5,8 @@
 //  Created by Marek on 14.10.2023.
 //
 
+import Foundation
+
 struct ConditionsModel {
     
     struct UnitsData {
@@ -12,7 +14,7 @@ struct ConditionsModel {
         var unit: String?
     }
 
-    var time: String?
+    var time: Date?
     var text: String?
     var temperature: UnitsData?
     var feelsLike: UnitsData?
