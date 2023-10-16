@@ -5,7 +5,10 @@
 //  Created by Marek on 14.10.2023.
 //
 
+import Foundation
+
 protocol SelectCityUseCaseProtocol {
+    
     func execute(_ city: CityModel)
 }
 
@@ -18,7 +21,9 @@ class SelectCityUseCase: SelectCityUseCaseProtocol {
     }
 
     func execute(_ city: CityModel) {
-        appState.selectedCity = city
+        DispatchQueue.main.async {
+            self.appState.selectedCity = city
+        }
     }
 }
 
