@@ -24,16 +24,15 @@ struct SearchView: View {
                     .padding(.bottom, 10)
                 
                 TextField("Type to search for city", text: $textfiledString)
-                .onChange(of: textfiledString) { _ in
+                .onChange(of: textfiledString) { newValue in
                     guard !textfiledString.isEmpty else {
                         screenState = .initial
                         return
                     }
                     screenState = .loading
-                    Task.init {
+                    Task {
                         do {
-                            try await useCases.searchCity.execute(term: textfiledString)
-                            screenState = appState.cities.isEmpty ? .empty : .content
+                            try await useCases.searchCity.execute(term: newValue)
                         } catch {
                             screenState = .empty
                         }
@@ -68,6 +67,14 @@ struct SearchView: View {
                 }
             }
             .padding()
+        }
+        .onAppear() {
+            if !appState.cities.isEmpty {
+                screenState = .content
+            }
+        }
+        .onChange(of: appState.cities) { newValue in
+            screenState = appState.cities.isEmpty ? .empty : .content
         }
     }
 }
