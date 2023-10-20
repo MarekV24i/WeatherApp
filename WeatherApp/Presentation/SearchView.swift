@@ -32,7 +32,7 @@ struct SearchView: View {
                     screenState = .loading
                     Task {
                         do {
-                            try await useCases.searchCity.execute(term: newValue)
+                            try useCases.searchCity.execute(term: newValue)
                         } catch {
                             screenState = .empty
                         }
