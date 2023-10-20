@@ -8,7 +8,7 @@
 import Foundation
 
 
-class ConditionsViewModelMapper {
+struct ConditionsViewModelMapper {
     
     static func map(model: ConditionsModel) -> ConditionsViewModel {
         
