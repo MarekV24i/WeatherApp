@@ -12,27 +12,23 @@ protocol SearchCityUseCaseProtocol {
     func execute(term: String) async throws
 }
 
-class SearchCityUseCase: SearchCityUseCaseProtocol {
-
-    private let repository: NetworkRepository
-    private let appState: AppState
-
-    init(repository: NetworkRepository, appState: AppState) {
-        self.repository = repository
-        self.appState = appState
-    }
-
+class SearchCityUseCase: NetworkUseCase, SearchCityUseCaseProtocol {
+    
     func execute(term: String) async throws {
-        do {
-            let entities = try await repository.searchCity(term: term)
-            DispatchQueue.main.async {
-                self.appState.cities = entities.map {
-                    CityMapper.map(entity: $0)
+        loadTask?.cancel()
+        
+        loadTask = Task {
+            do {
+                let entities = try await repository.searchCity(term: term)
+                DispatchQueue.main.async {
+                    self.appState.cities = entities.map {
+                        CityMapper.map(entity: $0)
+                    }
                 }
             }
-        }
-        catch {
-            throw AppError.citySearchFailed
+            catch {
+                throw AppError.citySearchFailed
+            }
         }
     }
 }
