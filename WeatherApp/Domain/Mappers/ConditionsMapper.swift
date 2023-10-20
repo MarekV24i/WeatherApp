@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ConditionsMapper {
+struct ConditionsMapper {
     
     static func map(entity: ConditionsEntity) -> ConditionsModel {
         

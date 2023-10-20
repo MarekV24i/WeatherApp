@@ -5,7 +5,7 @@
 //  Created by Marek on 14.10.2023.
 //
 
-class CityMapper {
+struct CityMapper {
     
     static func map(entity: CityEntity) -> CityModel {
          return CityModel(
