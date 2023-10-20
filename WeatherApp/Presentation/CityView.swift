@@ -75,9 +75,11 @@ struct CityView: View {
         })
         .onChange(of: appState.conditions) { newValue in
             guard let newConditions = newValue.first else {
+                screenState = .empty
                 return
             }
             viewModel = ConditionsViewModelMapper.map(model: newConditions)
+            screenState = .content
         }
     }
 }
