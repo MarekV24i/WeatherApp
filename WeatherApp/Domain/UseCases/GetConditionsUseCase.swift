@@ -9,12 +9,12 @@ import Foundation
 
 protocol GetConditionsUseCaseProtocol {
     
-    func execute(cityKey: String) async throws
+    func execute(cityKey: String) throws
 }
 
 class GetConditionsUseCase: NetworkUseCase, GetConditionsUseCaseProtocol {
 
-    func execute(cityKey: String) async throws {
+    func execute(cityKey: String) throws {
         loadTask?.cancel()
                 
         loadTask = Task {

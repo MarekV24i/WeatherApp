@@ -9,12 +9,12 @@ import Foundation
 
 protocol SearchCityUseCaseProtocol {
 
-    func execute(term: String) async throws
+    func execute(term: String) throws
 }
 
 class SearchCityUseCase: NetworkUseCase, SearchCityUseCaseProtocol {
     
-    func execute(term: String) async throws {
+    func execute(term: String) throws {
         loadTask?.cancel()
         
         loadTask = Task {
