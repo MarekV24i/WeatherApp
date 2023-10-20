@@ -12,7 +12,7 @@ protocol SelectCityUseCaseProtocol {
     func execute(_ city: CityModel)
 }
 
-class SelectCityUseCase: SelectCityUseCaseProtocol {
+struct SelectCityUseCase: SelectCityUseCaseProtocol {
 
     private let appState: AppState
 
