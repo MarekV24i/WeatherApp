@@ -11,6 +11,7 @@ import SwiftUI
 struct WeatherApp: App {
     
     @StateObject var appState = AppState()
+    
 
     var body: some Scene {
         WindowGroup {

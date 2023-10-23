@@ -73,7 +73,7 @@ struct CityView: View {
             }
         })
         .onChange(of: appState.conditions) { newValue in
-            guard let newConditions = newValue.first else {
+            guard let newConditions = newValue?.first else {
                 screenState = .empty
                 return
             }

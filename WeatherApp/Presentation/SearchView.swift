@@ -11,6 +11,7 @@ struct SearchView: View {
     
     @State var textfiledString = ""
     @State private var screenState: ScreenState = .initial
+    @State private var viewModel = [CityViewModel]()
     
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var useCases: UseCaseContainer
@@ -50,13 +51,13 @@ struct SearchView: View {
                     ProgressView()
                     Spacer()
                 case .content:
-                    List(appState.cities, id: \.id) { city in
+                    List(viewModel, id: \.id) { city in
                         NavigationLink {
                             CityView().onAppear{
-                                useCases.selectCity.execute(city)
+                                useCases.selectCity.execute(CityViewModelMapper.map(viewModel: city))
                             }
                         } label: {
-                            Text(city.name ?? "unknown_city")
+                            Text(city.label)
                         }
                     }
                     .listStyle(.plain)
@@ -73,8 +74,11 @@ struct SearchView: View {
                 screenState = .content
             }
         }
-        .onChange(of: appState.cities) { newValue in
-            screenState = appState.cities.isEmpty ? .empty : .content
+        .onChange(of: appState.cities) { _ in
+            viewModel = appState.cities.map {
+                CityViewModelMapper.map(model: $0)
+            }
+            screenState = viewModel.isEmpty ? .empty : .content
         }
     }
 }

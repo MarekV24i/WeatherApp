@@ -35,6 +35,8 @@
 		EAD860E12ADD439E003B277C /* ConditionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860E02ADD439E003B277C /* ConditionsViewModel.swift */; };
 		EAD860E32ADD44CF003B277C /* ConditionsViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860E22ADD44CF003B277C /* ConditionsViewModelMapper.swift */; };
 		EAD860E52AE2A354003B277C /* NetworkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860E42AE2A354003B277C /* NetworkUseCase.swift */; };
+		EAD860E72AE67E42003B277C /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860E62AE67E42003B277C /* CityViewModel.swift */; };
+		EAD860E92AE68179003B277C /* CityViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860E82AE68179003B277C /* CityViewModelMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		EAD860E02ADD439E003B277C /* ConditionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewModel.swift; sourceTree = "<group>"; };
 		EAD860E22ADD44CF003B277C /* ConditionsViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewModelMapper.swift; sourceTree = "<group>"; };
 		EAD860E42AE2A354003B277C /* NetworkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUseCase.swift; sourceTree = "<group>"; };
+		EAD860E62AE67E42003B277C /* CityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModel.swift; sourceTree = "<group>"; };
+		EAD860E82AE68179003B277C /* CityViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModelMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +214,8 @@
 				EAD860DD2ADC1887003B277C /* ScreenState.swift */,
 				EAD860E02ADD439E003B277C /* ConditionsViewModel.swift */,
 				EAD860E22ADD44CF003B277C /* ConditionsViewModelMapper.swift */,
+				EAD860E62AE67E42003B277C /* CityViewModel.swift */,
+				EAD860E82AE68179003B277C /* CityViewModelMapper.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -386,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD860E92AE68179003B277C /* CityViewModelMapper.swift in Sources */,
 				EAD860C02ADB02D1003B277C /* ConditionsEntity.swift in Sources */,
 				EAD8608C2AD959C9003B277C /* SearchView.swift in Sources */,
 				EAD860BE2ADB0256003B277C /* CityEntity.swift in Sources */,
@@ -405,6 +412,7 @@
 				EAD860DA2ADB1649003B277C /* ConditionsMapper.swift in Sources */,
 				EAD860D12ADB0D77003B277C /* CityMapper.swift in Sources */,
 				EAD860BA2ADB00B1003B277C /* NetworkError.swift in Sources */,
+				EAD860E72AE67E42003B277C /* CityViewModel.swift in Sources */,
 				EAD860C22ADB03E4003B277C /* NetworkRepository.swift in Sources */,
 				EAD860E32ADD44CF003B277C /* ConditionsViewModelMapper.swift in Sources */,
 				EAD860B42AD95C55003B277C /* Router.swift in Sources */,
