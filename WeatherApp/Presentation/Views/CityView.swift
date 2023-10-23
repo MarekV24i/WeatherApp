@@ -26,7 +26,7 @@ struct CityView: View {
                 Spacer()
             case .empty:
                 Spacer()
-                Text("Weather coditions couldn't be loaded.")
+                Text("empty_conditions")
                 Spacer()
             case .content:
                 Spacer()
@@ -54,7 +54,7 @@ struct CityView: View {
                 }
                 Spacer()
                 if let link = viewModel.link {
-                    Link("Open in safari", destination: link)
+                    Link("open_link", destination: link)
                 }
             }
         }

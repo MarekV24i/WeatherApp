@@ -19,12 +19,12 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Search city")
+                Text("search_city")
                     .font(.system(size: 20, weight: .semibold))
                     .padding(.top, 20)
                     .padding(.bottom, 10)
                 
-                TextField("Type to search for city", text: $textfiledString)
+                TextField("search_city_hint", text: $textfiledString)
                 .onChange(of: textfiledString) { newValue in
                     guard !textfiledString.isEmpty else {
                         screenState = .initial
@@ -63,7 +63,7 @@ struct SearchView: View {
                     .listStyle(.plain)
                 case .empty:
                     Spacer()
-                    Text("Nothing was found")
+                    Text("empty_cities")
                     Spacer()
                 }
             }

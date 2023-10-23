@@ -1,0 +1,58 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "empty_cities" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing was found"
+          }
+        }
+      }
+    },
+    "empty_conditions" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weather conditions couldn't be loaded."
+          }
+        }
+      }
+    },
+    "open_link" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in Safari"
+          }
+        }
+      }
+    },
+    "search_city" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search city"
+          }
+        }
+      }
+    },
+    "search_city_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type to search for city"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
