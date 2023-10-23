@@ -18,12 +18,30 @@ final class WeatherAppTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testCityMapping() throws {
+        
+        let key = "1234"
+        let name = "New York"
+        let country = "USA"
+        
+        let cityEntity = CityEntity(
+            Key: key,
+            LocalizedName: name,
+            Country: CityEntity.Country(LocalizedName: country)
+        )
+        
+        let cityModel = CityMapper.map(entity: cityEntity)
+        
+        XCTAssert(cityModel.key == key
+                  && cityModel.country == country
+                  && cityModel.name == name, "Network > Domain city mapping failed")
+        
+        let cityViewModel = CityViewModelMapper.map(model: cityModel)
+        
+        XCTAssert(cityViewModel.key == key
+                  && cityViewModel.country == country
+                  && cityViewModel.name == name, "Domain > Presentation city mapping failed")
+        
     }
 
     func testPerformanceExample() throws {
