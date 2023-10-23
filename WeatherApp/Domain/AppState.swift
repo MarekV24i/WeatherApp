@@ -19,15 +19,4 @@ class AppState: ObservableObject {
         self.selectedCity = selectedCity
         self.conditions = conditions
     }
-    
 }
-
-
-   
-//    override init() {
-//        super.init()
-//        self.cities = [CityModel(key:"1234", name: "Brno", country: "Czechia"), CityModel(key:"4567", name: "Zlín", country: "Czechia")]
-//        self.selectedCity = CityModel(key:"4567", name: "Zlín", country: "Czechia")
-//    }
-//}
-
