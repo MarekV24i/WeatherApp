@@ -20,10 +20,9 @@ struct SelectCityUseCase: SelectCityUseCaseProtocol {
         self.appState = appState
     }
 
+    @MainActor
     func execute(_ city: CityModel) {
-        DispatchQueue.main.async {
-            self.appState.selectedCity = city
-        }
+        self.appState.selectedCity = city
     }
 }
 

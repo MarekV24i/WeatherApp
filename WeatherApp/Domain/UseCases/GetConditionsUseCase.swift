@@ -14,16 +14,15 @@ protocol GetConditionsUseCaseProtocol {
 
 class GetConditionsUseCase: NetworkUseCase, GetConditionsUseCaseProtocol {
 
+    @MainActor
     func execute(cityKey: String) throws {
         loadTask?.cancel()
                 
         loadTask = Task {
             do {
                 let entities = try await repository.currentCondtions(cityKey: cityKey)
-                DispatchQueue.main.async {
-                    self.appState.conditions = entities.map {
-                        ConditionsMapper.map(entity: $0)
-                    }
+                self.appState.conditions = entities.map {
+                    ConditionsMapper.map(entity: $0)
                 }
             }
             catch {

@@ -14,16 +14,15 @@ protocol SearchCityUseCaseProtocol {
 
 class SearchCityUseCase: NetworkUseCase, SearchCityUseCaseProtocol {
     
+    @MainActor
     func execute(term: String) throws {
         loadTask?.cancel()
         
         loadTask = Task {
             do {
                 let entities = try await repository.searchCity(term: term)
-                DispatchQueue.main.async {
-                    self.appState.cities = entities.map {
-                        CityMapper.map(entity: $0)
-                    }
+                self.appState.cities = entities.map {
+                    CityMapper.map(entity: $0)
                 }
             }
             catch {
