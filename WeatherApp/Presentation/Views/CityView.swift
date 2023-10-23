@@ -63,7 +63,7 @@ struct CityView: View {
                 screenState = .initial
                 return
             }
-            Task.init {
+            Task {
                 do {
                     screenState = .loading
                     try useCases.getConditions.execute(cityKey: cityKey)
@@ -72,13 +72,51 @@ struct CityView: View {
                 }
             }
         })
-        .onChange(of: appState.conditions) { newValue in
-            guard let newConditions = newValue?.first else {
-                screenState = .empty
+        .onChange(of: appState.conditions) { _ in
+            updateViewModel()
+        }
+        .onAppear {
+            guard let _ = appState.selectedCity, let _ = appState.conditions else {
+                screenState = .initial
                 return
             }
-            viewModel = ConditionsViewModelMapper.map(model: newConditions)
-            screenState = .content
+            updateViewModel()
         }
+    }
+    
+    private func updateViewModel() {
+        guard let conditions = appState.conditions?.first else {
+            screenState = .empty
+            return
+        }
+        viewModel = ConditionsViewModelMapper.map(model: conditions)
+        screenState = .content
+    }
+}
+
+
+struct SearchView_Previews: PreviewProvider {
+    
+    static let mockCity = CityModel(
+                            key: "123",
+                            name: "Otrokovice",
+                            country: "Czechia"
+                        )
+    
+    static let mockConditions = ConditionsModel(
+        time: Date(),
+        text: "Hot (yet snowing)",
+        temperature: ConditionsModel.UnitsData(value: 40.2, unit: "C"),
+        feelsLike: ConditionsModel.UnitsData(value: 120, unit: "C"),
+        visibility: ConditionsModel.UnitsData(value: 8432, unit: "km"),
+        precipitation: ConditionsModel.UnitsData(value: 2000, unit: "mm"),
+        link: "https://wwww.google.com"
+    )
+    
+    static let appState = AppState(selectedCity: mockCity,
+                                    conditions: [mockConditions])
+    
+    static var previews: some View {
+        CityView().environmentObject(appState).environmentObject(UseCaseContainer(repository: NetworkRepository(), appState: appState))
     }
 }
