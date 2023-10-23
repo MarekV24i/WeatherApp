@@ -13,4 +13,10 @@ struct CityModel: Equatable {
     var key: String?
     var name: String?
     var country: String?
+    
+    init(key: String? = nil, name: String? = nil, country: String? = nil) {
+        self.key = key
+        self.name = name
+        self.country = country
+    }
 }

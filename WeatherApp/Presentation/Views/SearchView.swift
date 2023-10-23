@@ -71,20 +71,40 @@ struct SearchView: View {
         }
         .onAppear() {
             if !appState.cities.isEmpty {
+                updateViewModel()
                 screenState = .content
             }
         }
         .onChange(of: appState.cities) { _ in
-            viewModel = appState.cities.map {
-                CityViewModelMapper.map(model: $0)
-            }
+            updateViewModel()
             screenState = viewModel.isEmpty ? .empty : .content
+        }
+    }
+    
+    private func updateViewModel() {
+        viewModel = appState.cities.map {
+            CityViewModelMapper.map(model: $0)
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+    
+    static let mockCities = [CityModel(
+                            key: "123",
+                            name: "Otrokovice",
+                            country: "Czechia"
+                        ),
+                        CityModel(
+                            key: "456",
+                            name: "New York",
+                            country: "USA"
+                        )
+    ]
+    
+    static let appState = AppState(cities: mockCities)
+    
     static var previews: some View {
-        SearchView()
+        SearchView().environmentObject(appState).environmentObject(UseCaseContainer(repository: NetworkRepository(), appState: appState))
     }
 }
