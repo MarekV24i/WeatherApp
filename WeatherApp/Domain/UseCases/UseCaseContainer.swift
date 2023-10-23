@@ -14,9 +14,15 @@ class UseCaseContainer: ObservableObject {
     var searchCity: SearchCityUseCaseProtocol
     var getConditions: GetConditionsUseCaseProtocol
     
-    init(repository: NetworkRepository, appState: AppState) {
-        self.selectCity = SelectCityUseCase(appState: appState)
-        self.searchCity = SearchCityUseCase(repository: repository, appState: appState)
-        self.getConditions = GetConditionsUseCase(repository: repository, appState: appState)
+    // UseCases can be injected, otherwise use default implementation
+    init(repository: NetworkRepository,
+         appState: AppState,
+         selectCity: SelectCityUseCaseProtocol? = nil,
+         searchCity: SearchCityUseCaseProtocol? = nil,
+         getConditions: GetConditionsUseCaseProtocol? = nil
+    ) {
+        self.selectCity = selectCity ?? SelectCityUseCase(appState: appState)
+        self.searchCity = searchCity ?? SearchCityUseCase(repository: repository, appState: appState)
+        self.getConditions = getConditions ?? GetConditionsUseCase(repository: repository, appState: appState)
     }
 }

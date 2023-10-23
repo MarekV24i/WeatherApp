@@ -89,22 +89,19 @@ struct SearchView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+        
+    static let appState = AppState(cities: MockupData.mockCities)
+    static let repo = NetworkRepository()
     
-    static let mockCities = [CityModel(
-                            key: "123",
-                            name: "Otrokovice",
-                            country: "Czechia"
-                        ),
-                        CityModel(
-                            key: "456",
-                            name: "New York",
-                            country: "USA"
-                        )
-    ]
-    
-    static let appState = AppState(cities: mockCities)
-    
+    // Used mocked UseCases to save network requests
     static var previews: some View {
-        SearchView().environmentObject(appState).environmentObject(UseCaseContainer(repository: NetworkRepository(), appState: appState))
+        SearchView()
+            .environmentObject(appState)
+            .environmentObject(UseCaseContainer(repository: repo,
+                                                appState: appState,
+                                                selectCity: MockupSelectCityUseCase(appState: appState),
+                                                searchCity: MockupSearchCityUseCase(repository: repo, appState: appState),
+                                                getConditions: MockupGetConditionsUseCase(repository: repo, appState: appState)
+                                               ))
     }
 }

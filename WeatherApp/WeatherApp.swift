@@ -17,8 +17,9 @@ struct WeatherApp: App {
         WindowGroup {
             
             // Inject AppState and UsesCases as environment objects so all views can access them easily
-            // Place to insert mocked-up application state, use-cases or repository if needed
-            SearchView().environmentObject(appState).environmentObject(UseCaseContainer(repository: NetworkRepository(), appState: appState))
+            // Place to insert mocked-up application state, use-cases or repository if needed (e.g. used in SearchView preview)
+            SearchView().environmentObject(appState)
+                .environmentObject(UseCaseContainer(repository: NetworkRepository(), appState: appState))
         }
     }
 }
