@@ -11,7 +11,7 @@ struct CityViewModel {
     
     var id = UUID()
     var key: String?
-    var name: String = "Unknown city"
+    var name: String = String(localized: "unknown_city")
     var country: String?
     
     var label: String {

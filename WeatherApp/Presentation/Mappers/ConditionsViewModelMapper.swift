@@ -15,9 +15,9 @@ struct ConditionsViewModelMapper {
         let time = getTimeFormatted(model.time)
         let text = model.text ?? ""
         let temperature = getLabelFormatted(value: model.temperature?.value, unit: model.temperature?.unit, format: "%.1f °%@")
-        let feelsLike = getLabelFormatted(value: model.feelsLike?.value, unit: model.feelsLike?.unit, format: "Feeels like %.1f °%@")
-        let visibility = getLabelFormatted(value: model.visibility?.value, unit: model.visibility?.unit, format: "Visibility %.1f %@")
-        let precipitaiton = getLabelFormatted(value: model.precipitation?.value, unit: model.precipitation?.unit, format:       "Precipitation %.1f %@")
+        let feelsLike = getLabelFormatted(value: model.feelsLike?.value, unit: model.feelsLike?.unit, format: "\(String(localized: "feels_like")) %.1f °%@")
+        let visibility = getLabelFormatted(value: model.visibility?.value, unit: model.visibility?.unit, format: "\(String(localized: "visibility")) %.1f %@")
+        let precipitaiton = getLabelFormatted(value: model.precipitation?.value, unit: model.precipitation?.unit, format:       "\(String(localized: "precipitation")) %.1f %@")
         
         var link:URL?
         if let URLString = model.link {

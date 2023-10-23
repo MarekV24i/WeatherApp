@@ -21,12 +21,34 @@
         }
       }
     },
+    "feels_like" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feels like"
+          }
+        }
+      }
+    },
     "open_link" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open in Safari"
+          }
+        }
+      }
+    },
+    "precipitation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precipitation"
           }
         }
       }
@@ -49,6 +71,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Type to search for city"
+          }
+        }
+      }
+    },
+    "unknown_city" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown city"
+          }
+        }
+      }
+    },
+    "visibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visibility"
           }
         }
       }
