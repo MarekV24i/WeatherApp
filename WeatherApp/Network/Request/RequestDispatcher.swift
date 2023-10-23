@@ -9,16 +9,20 @@ import Foundation
 class RequestDispatcher {
 
     class func request<T: Codable>(apiRouter: Router) async throws -> T {
+        
         var components = URLComponents()
         components.host = apiRouter.host
         components.scheme = apiRouter.scheme
         components.path = apiRouter.path
         components.queryItems = apiRouter.parameters
         
-        guard let url = components.url else { throw NetworkError.badUrl }
+        guard let url = components.url else {
+            throw NetworkError.badUrl
+        }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = apiRouter.method
         let session = URLSession(configuration: .default)
+        
         return try await withCheckedThrowingContinuation { continuation in
             let dataTask = session.dataTask(with: urlRequest) { data, response, error in
                 if let error = error {

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Model for City in Domain layer
 struct CityModel: Equatable {
     
     var id = UUID()

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Mapping conditions data between Network and Domain layer
 struct ConditionsMapper {
     
     static func map(entity: ConditionsEntity) -> ConditionsModel {

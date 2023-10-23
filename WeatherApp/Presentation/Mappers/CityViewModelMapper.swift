@@ -6,6 +6,7 @@
 //
 
 
+// Mapping city data between Presentation and Domain layer
 struct CityViewModelMapper {
     
     static func map(model: CityModel) -> CityViewModel {

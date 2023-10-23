@@ -10,11 +10,14 @@ import SwiftUI
 @main
 struct WeatherApp: App {
     
+    // Single source of truth
     @StateObject var appState = AppState()
     
-
     var body: some Scene {
         WindowGroup {
+            
+            // Inject AppState and UsesCases as environment objects so all views can access them easily
+            // Place to insert mocked-up application state, use-cases or repository if needed
             SearchView().environmentObject(appState).environmentObject(UseCaseContainer(repository: NetworkRepository(), appState: appState))
         }
     }

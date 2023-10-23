@@ -7,6 +7,7 @@
 
 import Foundation
 
+// UseCase for city selection
 protocol SelectCityUseCaseProtocol {
     
     func execute(_ city: CityModel)

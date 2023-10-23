@@ -5,7 +5,9 @@
 //  Created by Marek on 20.10.2023.
 //
 
+// UseCase which performs network loading
 class NetworkUseCase {
+    
     let repository: NetworkRepository
     let appState: AppState
     var loadTask: Task<(), Error>?

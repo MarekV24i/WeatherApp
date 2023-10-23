@@ -5,6 +5,7 @@
 //  Created by Marek on 14.10.2023.
 //
 
+// Server response for conditions load
 struct ConditionsEntity: Codable {
     
     struct Units: Codable {

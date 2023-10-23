@@ -7,6 +7,7 @@
 
 import Foundation
 
+// UseCase for city seaching
 protocol SearchCityUseCaseProtocol {
 
     func execute(term: String) throws

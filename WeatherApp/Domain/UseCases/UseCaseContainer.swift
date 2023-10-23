@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Holds all possible UseCases
 class UseCaseContainer: ObservableObject {
     
     var selectCity: SelectCityUseCaseProtocol

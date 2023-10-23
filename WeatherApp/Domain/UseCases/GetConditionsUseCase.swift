@@ -7,6 +7,7 @@
 
 import Foundation
 
+// UseCase for loading conditions
 protocol GetConditionsUseCaseProtocol {
     
     func execute(cityKey: String) throws

@@ -7,7 +7,10 @@
 
 protocol NetworkRepositoryProtocol {
     
+    // Returns list of cites based on search term provided
     func searchCity(term: String?) async throws -> [CityEntity]
+    
+    // Loads weather conditions for specific city
     func currentCondtions(cityKey: String) async throws -> [ConditionsEntity]
 }
 

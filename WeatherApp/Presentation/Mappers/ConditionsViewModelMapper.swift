@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+// Mapping conditions data between Presentation and Domain layer
 struct ConditionsViewModelMapper {
     
     static func map(model: ConditionsModel) -> ConditionsViewModel {

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// View model for Conditions in Presentation layer
 struct ConditionsViewModel {
     
     var time: String = ""
