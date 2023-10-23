@@ -100,6 +100,36 @@ final class WeatherAppTests: XCTestCase {
                   "Domain > Presentation conditions mapping failed")
         
     }
+    
+    
+    func testConditionsLoad() async throws {
+
+        let cityKey = "123291"
+        
+        do {
+            let conditions = try await NetworkRepository().currentCondtions(cityKey: cityKey)
+            XCTAssert(!conditions.isEmpty, "Empty conditions loaded")
+        }
+        catch {
+            XCTFail("Failed to load conditions")
+        }
+    }
+    
+    
+    func testCitiesLoad() async throws {
+
+        let searchTerm = "B"
+        
+        do {
+            let conditions = try await NetworkRepository().searchCity(term: searchTerm)
+            XCTAssert(!conditions.isEmpty, "No cities found")
+        }
+        catch {
+            XCTFail("Failed to search for cities")
+        }
+    }
+    
+    
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
