@@ -23,11 +23,20 @@ final class WeatherAppUITests: XCTestCase {
     }
 
     func testExample() throws {
-        // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let textField = app.textFields.firstMatch
+        textField.tap()
+        textField.typeText("b")
+        
+        let button = app.collectionViews.staticTexts["Beijing (China)"]
+        
+        if button.waitForExistence(timeout: 5) {
+            button.tap()
+            
+            XCTAssert(app.staticTexts["Beijing"].waitForExistence(timeout: 5))
+            XCTAssert(app.staticTexts["China"].waitForExistence(timeout: 5))
+        }
     }
 
     func testLaunchPerformance() throws {
