@@ -6,6 +6,7 @@
 //
 
 enum ScreenState {
+    
     case initial
     case empty
     case loading

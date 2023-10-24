@@ -15,7 +15,6 @@ struct WeatherApp: App {
     
     var body: some Scene {
         WindowGroup {
-            
             // Inject AppState and UsesCases as environment objects so all views can access them easily
             // Place to insert mockup application state, use-cases or repository if needed (e.g. used in SearchView preview)
             SearchView().environmentObject(appState)
