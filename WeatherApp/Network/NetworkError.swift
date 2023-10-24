@@ -7,7 +7,7 @@
 
 // Network level errors
 enum NetworkError: Error {
-    
+
     case badUrl
     case noData
 }

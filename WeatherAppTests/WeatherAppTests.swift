@@ -19,41 +19,41 @@ final class WeatherAppTests: XCTestCase {
     }
 
     func testCityMapping() throws {
-        
+
         let key = "1234"
         let name = "New York"
         let country = "USA"
-        
+
         let cityEntity = CityEntity(
             Key: key,
             LocalizedName: name,
             Country: CityEntity.Country(LocalizedName: country)
         )
-        
+
         let cityModel = CityMapper.map(entity: cityEntity)
-        
+
         XCTAssert(cityModel.key == key
                   && cityModel.country == country
-                  && cityModel.name == name, 
+                  && cityModel.name == name,
                   "Network > Domain city mapping failed")
-        
+
         let cityViewModel = CityViewModelMapper.map(model: cityModel)
-        
+
         XCTAssert(cityViewModel.key == key
                   && cityViewModel.country == country
-                  && cityViewModel.name == name, 
+                  && cityViewModel.name == name,
                   "Domain > Presentation city mapping failed")
-        
+
     }
-    
+
     func testConditionsMapping() throws {
-        
+
         let time = Date()
         let text = "sunny"
         let value: Double = 1.2
         let unit = "C"
         let link = "www.google.com"
-        
+
         var conditionsEntity = ConditionsEntity()
         conditionsEntity.LocalObservationDateTime = ISO8601DateFormatter().string(from: time)
         conditionsEntity.WeatherText = text
@@ -63,9 +63,9 @@ final class WeatherAppTests: XCTestCase {
         conditionsEntity.PrecipitationSummary = ConditionsEntity.Precipitation(Precipitation:
         ConditionsEntity.Units(Metric: ConditionsEntity.UnitsData(Value: value, Unit: unit)))
         conditionsEntity.MobileLink = link
-                                                                      
+
         let conditionsModel = ConditionsMapper.map(entity: conditionsEntity)
-        
+
         XCTAssert(conditionsModel.time?.ISO8601Format() == time.ISO8601Format()
                   && conditionsModel.text == text
                   && conditionsModel.temperature?.value == value
@@ -78,9 +78,9 @@ final class WeatherAppTests: XCTestCase {
                   && conditionsModel.visibility?.unit == unit
                   && conditionsModel.link == link,
                   "Network > Domain conditions mapping failed")
-        
+
         let conditionsViewModel = ConditionsViewModelMapper.map(model: conditionsModel)
-        
+
         XCTAssert(conditionsViewModel.text == text
                   && conditionsViewModel.time.contains(String(Calendar.current.component(.hour, from: time)))
                   && conditionsViewModel.time.contains(String(Calendar.current.component(.minute, from: time)))
@@ -98,38 +98,32 @@ final class WeatherAppTests: XCTestCase {
                   && conditionsViewModel.visibility.contains(String(unit))
                   && conditionsViewModel.link?.absoluteString == link,
                   "Domain > Presentation conditions mapping failed")
-        
+
     }
-    
-    
+
     func testConditionsLoad() async throws {
 
         let cityKey = "123291"
-        
+
         do {
             let conditions = try await NetworkRepository().currentCondtions(cityKey: cityKey)
             XCTAssert(!conditions.isEmpty, "Empty conditions loaded")
-        }
-        catch {
+        } catch {
             XCTFail("Failed to load conditions")
         }
     }
-    
-    
+
     func testCitiesLoad() async throws {
 
         let searchTerm = "B"
-        
+
         do {
             let conditions = try await NetworkRepository().searchCity(term: searchTerm)
             XCTAssert(!conditions.isEmpty, "No cities found")
-        }
-        catch {
+        } catch {
             XCTFail("Failed to search for cities")
         }
     }
-    
-    
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

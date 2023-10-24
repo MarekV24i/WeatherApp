@@ -9,11 +9,11 @@ import SwiftUI
 
 // Holds all possible UseCases
 class UseCaseContainer: ObservableObject {
-    
+
     var selectCity: SelectCityUseCaseProtocol
     var searchCity: SearchCityUseCaseProtocol
     var getConditions: GetConditionsUseCaseProtocol
-    
+
     // UseCases can be injected, otherwise use default implementation
     init(repository: NetworkRepository,
          appState: AppState,

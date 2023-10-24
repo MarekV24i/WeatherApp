@@ -9,7 +9,7 @@ import Foundation
 
 // UseCase for loading conditions
 protocol GetConditionsUseCaseProtocol {
-    
+
     func execute(cityKey: String) async throws
 }
 
@@ -18,7 +18,7 @@ class GetConditionsUseCase: NetworkUseCase, GetConditionsUseCaseProtocol {
     @MainActor
     func execute(cityKey: String) async throws {
         loadTask?.cancel()
-        
+
         loadTask = Task {
             let entities = try await repository.currentCondtions(cityKey: cityKey)
             try Task.checkCancellation()
@@ -26,11 +26,10 @@ class GetConditionsUseCase: NetworkUseCase, GetConditionsUseCaseProtocol {
                 ConditionsMapper.map(entity: $0)
             }
         }
-        
+
         do {
             try await loadTask?.value
-        }
-        catch {
+        } catch {
             throw AppError.conditionsLoadFailed
         }
     }

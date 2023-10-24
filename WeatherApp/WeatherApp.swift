@@ -9,10 +9,10 @@ import SwiftUI
 
 @main
 struct WeatherApp: App {
-    
+
     // Single source of truth
     @StateObject var appState = AppState()
-    
+
     var body: some Scene {
         WindowGroup {
             // Inject AppState and UsesCases as environment objects so all views can access them easily
@@ -22,4 +22,3 @@ struct WeatherApp: App {
         }
     }
 }
-

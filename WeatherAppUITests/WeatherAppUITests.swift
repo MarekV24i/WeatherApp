@@ -28,12 +28,12 @@ final class WeatherAppUITests: XCTestCase {
         let textField = app.textFields.firstMatch
         textField.tap()
         textField.typeText("b")
-        
+
         let button = app.collectionViews.staticTexts["Beijing (China)"]
-        
+
         if button.waitForExistence(timeout: 5) {
             button.tap()
-            
+
             XCTAssert(app.staticTexts["Beijing"].waitForExistence(timeout: 5))
             XCTAssert(app.staticTexts["China"].waitForExistence(timeout: 5))
         }

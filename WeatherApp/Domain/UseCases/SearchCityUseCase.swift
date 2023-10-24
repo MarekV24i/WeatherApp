@@ -14,11 +14,11 @@ protocol SearchCityUseCaseProtocol {
 }
 
 class SearchCityUseCase: NetworkUseCase, SearchCityUseCaseProtocol {
-    
+
     @MainActor
     func execute(term: String) async throws {
         loadTask?.cancel()
-        
+
         loadTask = Task {
             let entities = try await repository.searchCity(term: term)
             try Task.checkCancellation()
@@ -26,14 +26,12 @@ class SearchCityUseCase: NetworkUseCase, SearchCityUseCaseProtocol {
                 CityMapper.map(entity: $0)
             }
         }
-        
+
         do {
             try await loadTask?.value
-        }
-        catch is CancellationError {
+        } catch is CancellationError {
             throw AppError.requestCancelled
-        }
-        catch {
+        } catch {
             throw AppError.citySearchFailed
         }
     }

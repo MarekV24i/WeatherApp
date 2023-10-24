@@ -7,11 +7,11 @@
 
 // Server response for conditions load
 struct ConditionsEntity: Codable {
-    
+
     struct Units: Codable {
         var Metric: UnitsData?
     }
-    
+
     struct UnitsData: Codable {
         var Value: Double?
         var Unit: String?
@@ -20,7 +20,7 @@ struct ConditionsEntity: Codable {
     struct Precipitation: Codable {
         var Precipitation: Units?
     }
-    
+
     var LocalObservationDateTime: String?
     var WeatherText: String?
     var Temperature: Units?

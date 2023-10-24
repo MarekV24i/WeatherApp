@@ -7,11 +7,11 @@
 
 // UseCase which performs network loading
 class NetworkUseCase {
-    
+
     let repository: NetworkRepository
     let appState: AppState
     var loadTask: Task<(), Error>?
-    
+
     init(repository: NetworkRepository, appState: AppState) {
         self.repository = repository
         self.appState = appState

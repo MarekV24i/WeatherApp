@@ -9,7 +9,7 @@ import Foundation
 
 // UseCase for city selection
 protocol SelectCityUseCaseProtocol {
-    
+
     func execute(_ city: CityModel)
 }
 
@@ -26,5 +26,3 @@ struct SelectCityUseCase: SelectCityUseCaseProtocol {
         self.appState.selectedCity = city
     }
 }
-
-

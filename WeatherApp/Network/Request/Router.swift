@@ -8,15 +8,15 @@
 import Foundation
 
 enum Router {
-    
+
     case searchCity(term: String)
     case currentconditions(locationKey: String)
-    
+
     var apiKey: URLQueryItem {
         // API keys should be stored safely, normally I use git-secret (but in this demo lets keep it here)
         return URLQueryItem(name: "apikey", value: "fqd9KZE3yuxP6JBLF85wnl4lis8qoUCX")
     }
-    
+
     var host: String {
         switch self {
         case .searchCity, .currentconditions:
@@ -26,11 +26,11 @@ enum Router {
 
     var scheme: String {
         switch self {
-        case .searchCity,.currentconditions:
+        case .searchCity, .currentconditions:
             return "https"
         }
     }
-    
+
     var path: String {
         switch self {
         case .searchCity:

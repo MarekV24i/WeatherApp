@@ -19,7 +19,7 @@ struct MockupData {
             country: "USA"
         )
     ]
-    
+
     static let mockConditions = ConditionsModel(
         time: Date(),
         text: "Very hot",
@@ -31,15 +31,14 @@ struct MockupData {
     )
 }
 
-
 struct MockupSelectCityUseCase: SelectCityUseCaseProtocol {
-    
+
     private let appState: AppState
-    
+
     init(appState: AppState) {
         self.appState = appState
     }
-    
+
     @MainActor
     func execute(_ city: CityModel) {
         print("Selected city: \(city.name ?? "")")
@@ -48,7 +47,7 @@ struct MockupSelectCityUseCase: SelectCityUseCaseProtocol {
 }
 
 class MockupSearchCityUseCase: NetworkUseCase, SearchCityUseCaseProtocol {
-    
+
     @MainActor
     func execute(term: String) throws {
         appState.cities = MockupData.mockCities + [CityModel()]

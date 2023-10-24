@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct CityView: View {
-    
+
     @State private var screenState: ScreenState = .initial
     @State private var viewModel = ConditionsViewModel()
-    
+
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var useCases: UseCaseContainer
-    
+
     var body: some View {
         VStack {
             switch screenState {
@@ -73,7 +73,7 @@ struct CityView: View {
             updateViewModel()
         }
     }
-    
+
     private func loadConditions() {
         guard let cityKey = appState.selectedCity?.key else {
             screenState = .initial
@@ -89,7 +89,7 @@ struct CityView: View {
             }
         }
     }
-    
+
     private func updateViewModel() {
         guard let conditions = appState.conditions?.first else {
             screenState = .empty
@@ -100,13 +100,12 @@ struct CityView: View {
     }
 }
 
-
 struct SearchView_Previews: PreviewProvider {
-        
+
     // Use mockup data for preview
     static let appState = AppState(selectedCity: MockupData.mockCities.first,
                                    conditions: [MockupData.mockConditions])
-    
+
     static var previews: some View {
         CityView().environmentObject(appState).environmentObject(UseCaseContainer(repository: NetworkRepository(), appState: appState))
     }

@@ -5,10 +5,9 @@
 //  Created by Marek on 18.10.2023.
 //
 
-
 // Mapping city data between Presentation and Domain layer
 struct CityViewModelMapper {
-    
+
     static func map(model: CityModel) -> CityViewModel {
         var city = CityViewModel()
         if let name = model.name {
@@ -18,7 +17,7 @@ struct CityViewModelMapper {
         city.country = model.country
         return city
     }
-    
+
     static func map(viewModel: CityViewModel) -> CityModel {
         return CityModel(
             key: viewModel.key,
@@ -26,5 +25,5 @@ struct CityViewModelMapper {
             country: viewModel.country
         )
     }
-    
+
 }

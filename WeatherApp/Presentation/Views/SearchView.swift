@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct SearchView: View {
-    
+
     @State private var textfiledString = ""
     @State private var screenState: ScreenState = .initial
     @State private var viewModel = [CityViewModel]()
-    
+
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var useCases: UseCaseContainer
-        
+
     var body: some View {
         NavigationView {
             VStack {
@@ -23,7 +23,7 @@ struct SearchView: View {
                     .font(.system(size: 20, weight: .semibold))
                     .padding(.top, 20)
                     .padding(.bottom, 10)
-                
+
                 TextField("search_city_hint", text: $textfiledString)
                     .onChange(of: textfiledString) { newValue in
                         searchCity(term: newValue)
@@ -31,7 +31,7 @@ struct SearchView: View {
                     .padding(10)
                     .background(.gray.opacity(0.3))
                     .cornerRadius(10)
-            
+
                 switch screenState {
                 case .initial:
                     Spacer()
@@ -42,7 +42,7 @@ struct SearchView: View {
                 case .content:
                     List(viewModel, id: \.id) { city in
                         NavigationLink {
-                            CityView().onAppear{
+                            CityView().onAppear {
                                 useCases.selectCity.execute(CityViewModelMapper.map(viewModel: city))
                             }
                         } label: {
@@ -58,7 +58,7 @@ struct SearchView: View {
             }
             .padding()
         }
-        .onAppear() {
+        .onAppear {
             if !appState.cities.isEmpty {
                 updateViewModel()
                 screenState = .content
@@ -69,7 +69,7 @@ struct SearchView: View {
             screenState = viewModel.isEmpty ? .empty : .content
         }
     }
-    
+
     private func searchCity(term: String) {
         guard !textfiledString.isEmpty else {
             screenState = .initial
@@ -85,7 +85,7 @@ struct SearchView: View {
             }
         }
     }
-    
+
     private func updateViewModel() {
         viewModel = appState.cities.map {
             CityViewModelMapper.map(model: $0)
@@ -94,10 +94,10 @@ struct SearchView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-        
+
     static let appState = AppState(cities: MockupData.mockCities)
     static let repo = NetworkRepository()
-    
+
     // Used mockup UseCases to save network requests
     static var previews: some View {
         SearchView()
