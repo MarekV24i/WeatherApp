@@ -39,18 +39,19 @@ struct CityView: View {
                         .font(.system(size: 30, weight: .bold))
                         .padding(30)
                     Text(viewModel.temperature)
-                            .font(.system(size: 30, weight: .bold))
-                            .padding(5)
+                        .font(.system(size: 30, weight: .bold))
+                        .padding(5)
                     Text(viewModel.feelsLike)
-                            .padding(5)
+                        .padding(5)
                 }
                 Spacer()
                 Group {
                     Text(viewModel.visibility)
-                            .padding(5)
+                        .padding(5)
                     Text(viewModel.precipitation)
-                            .padding(5)
-                        Text(viewModel.time)
+                        .padding(5)
+                    Text(viewModel.time)
+                        .padding(20)
                 }
                 Spacer()
                 if let link = viewModel.link {
@@ -96,25 +97,10 @@ struct CityView: View {
 
 
 struct SearchView_Previews: PreviewProvider {
-    
-    static let mockCity = CityModel(
-                            key: "123",
-                            name: "Otrokovice",
-                            country: "Czechia"
-                        )
-    
-    static let mockConditions = ConditionsModel(
-        time: Date(),
-        text: "Hot (yet snowing)",
-        temperature: ConditionsModel.UnitsData(value: 40.2, unit: "C"),
-        feelsLike: ConditionsModel.UnitsData(value: 120, unit: "C"),
-        visibility: ConditionsModel.UnitsData(value: 8432, unit: "km"),
-        precipitation: ConditionsModel.UnitsData(value: 2000, unit: "mm"),
-        link: "https://wwww.google.com"
-    )
-    
-    static let appState = AppState(selectedCity: mockCity,
-                                    conditions: [mockConditions])
+        
+    // Use mockup data for preview
+    static let appState = AppState(selectedCity: MockupData.mockCities.first,
+                                   conditions: [MockupData.mockConditions])
     
     static var previews: some View {
         CityView().environmentObject(appState).environmentObject(UseCaseContainer(repository: NetworkRepository(), appState: appState))

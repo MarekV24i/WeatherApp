@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     
-    @State var textfiledString = ""
+    @State private var textfiledString = ""
     @State private var screenState: ScreenState = .initial
     @State private var viewModel = [CityViewModel]()
     
@@ -25,23 +25,23 @@ struct SearchView: View {
                     .padding(.bottom, 10)
                 
                 TextField("search_city_hint", text: $textfiledString)
-                .onChange(of: textfiledString) { newValue in
-                    guard !textfiledString.isEmpty else {
-                        screenState = .initial
-                        return
-                    }
-                    screenState = .loading
-                    Task {
-                        do {
-                            try useCases.searchCity.execute(term: newValue)
-                        } catch {
-                            screenState = .empty
+                    .onChange(of: textfiledString) { newValue in
+                        guard !textfiledString.isEmpty else {
+                            screenState = .initial
+                            return
+                        }
+                        screenState = .loading
+                        Task {
+                            do {
+                                try useCases.searchCity.execute(term: newValue)
+                            } catch {
+                                screenState = .empty
+                            }
                         }
                     }
-                }
-                .padding(10)
-                .background(.gray.opacity(0.3))
-                .cornerRadius(10)
+                    .padding(10)
+                    .background(.gray.opacity(0.3))
+                    .cornerRadius(10)
             
                 switch screenState {
                 case .initial:
@@ -93,7 +93,7 @@ struct ContentView_Previews: PreviewProvider {
     static let appState = AppState(cities: MockupData.mockCities)
     static let repo = NetworkRepository()
     
-    // Used mocked UseCases to save network requests
+    // Used mockup UseCases to save network requests
     static var previews: some View {
         SearchView()
             .environmentObject(appState)
