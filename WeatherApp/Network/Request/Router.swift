@@ -13,6 +13,7 @@ enum Router {
     case currentconditions(locationKey: String)
     
     var apiKey: URLQueryItem {
+        // API keys should be stored safely, normally I use git-secret (but in this demo lets keep it here)
         return URLQueryItem(name: "apikey", value: "fqd9KZE3yuxP6JBLF85wnl4lis8qoUCX")
     }
     
@@ -53,6 +54,5 @@ enum Router {
         case .currentconditions:
             return [self.apiKey, URLQueryItem(name: "details", value: "true")]
         }
-        
     }
 }
