@@ -33,8 +33,9 @@ struct SearchView: View {
                         screenState = .loading
                         Task {
                             do {
-                                try useCases.searchCity.execute(term: newValue)
-                            } catch {
+                                try await useCases.searchCity.execute(term: newValue)
+                                screenState = viewModel.isEmpty ? .empty : .content
+                            } catch AppError.citySearchFailed {
                                 screenState = .empty
                             }
                         }

@@ -10,25 +10,31 @@ import Foundation
 // UseCase for city seaching
 protocol SearchCityUseCaseProtocol {
 
-    func execute(term: String) throws
+    func execute(term: String) async throws
 }
 
 class SearchCityUseCase: NetworkUseCase, SearchCityUseCaseProtocol {
     
     @MainActor
-    func execute(term: String) throws {
+    func execute(term: String) async throws {
         loadTask?.cancel()
         
         loadTask = Task {
-            do {
-                let entities = try await repository.searchCity(term: term)
-                self.appState.cities = entities.map {
-                    CityMapper.map(entity: $0)
-                }
+            let entities = try await repository.searchCity(term: term)
+            try Task.checkCancellation()
+            self.appState.cities = entities.map {
+                CityMapper.map(entity: $0)
             }
-            catch {
-                throw AppError.citySearchFailed
-            }
+        }
+        
+        do {
+            try await loadTask?.value
+        }
+        catch is CancellationError {
+            throw AppError.requestCancelled
+        }
+        catch {
+            throw AppError.citySearchFailed
         }
     }
 }
