@@ -67,7 +67,7 @@ struct CityView: View {
             Task {
                 do {
                     screenState = .loading
-                    try useCases.getConditions.execute(cityKey: cityKey)
+                    try await useCases.getConditions.execute(cityKey: cityKey)
                 } catch {
                     screenState = .empty
                 }

@@ -10,25 +10,28 @@ import Foundation
 // UseCase for loading conditions
 protocol GetConditionsUseCaseProtocol {
     
-    func execute(cityKey: String) throws
+    func execute(cityKey: String) async throws
 }
 
 class GetConditionsUseCase: NetworkUseCase, GetConditionsUseCaseProtocol {
 
     @MainActor
-    func execute(cityKey: String) throws {
+    func execute(cityKey: String) async throws {
         loadTask?.cancel()
-                
+        
         loadTask = Task {
-            do {
-                let entities = try await repository.currentCondtions(cityKey: cityKey)
-                self.appState.conditions = entities.map {
-                    ConditionsMapper.map(entity: $0)
-                }
+            let entities = try await repository.currentCondtions(cityKey: cityKey)
+            try Task.checkCancellation()
+            self.appState.conditions = entities.map {
+                ConditionsMapper.map(entity: $0)
             }
-            catch {
-                throw AppError.conditionsLoadFailed
-            }
+        }
+        
+        do {
+            try await loadTask?.value
+        }
+        catch {
+            throw AppError.conditionsLoadFailed
         }
     }
 }
