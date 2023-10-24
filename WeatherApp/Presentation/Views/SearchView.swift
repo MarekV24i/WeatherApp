@@ -26,19 +26,7 @@ struct SearchView: View {
                 
                 TextField("search_city_hint", text: $textfiledString)
                     .onChange(of: textfiledString) { newValue in
-                        guard !textfiledString.isEmpty else {
-                            screenState = .initial
-                            return
-                        }
-                        screenState = .loading
-                        Task {
-                            do {
-                                try await useCases.searchCity.execute(term: newValue)
-                                screenState = viewModel.isEmpty ? .empty : .content
-                            } catch AppError.citySearchFailed {
-                                screenState = .empty
-                            }
-                        }
+                        searchCity(term: newValue)
                     }
                     .padding(10)
                     .background(.gray.opacity(0.3))
@@ -79,6 +67,22 @@ struct SearchView: View {
         .onChange(of: appState.cities) { _ in
             updateViewModel()
             screenState = viewModel.isEmpty ? .empty : .content
+        }
+    }
+    
+    private func searchCity(term: String) {
+        guard !textfiledString.isEmpty else {
+            screenState = .initial
+            return
+        }
+        screenState = .loading
+        Task {
+            do {
+                try await useCases.searchCity.execute(term: term)
+                screenState = viewModel.isEmpty ? .empty : .content
+            } catch AppError.citySearchFailed {
+                screenState = .empty
+            }
         }
     }
     

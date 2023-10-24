@@ -60,18 +60,7 @@ struct CityView: View {
             }
         }
         .onChange(of: appState.selectedCity, perform: { _ in
-            guard let cityKey = appState.selectedCity?.key else {
-                screenState = .initial
-                return
-            }
-            Task {
-                do {
-                    screenState = .loading
-                    try await useCases.getConditions.execute(cityKey: cityKey)
-                } catch {
-                    screenState = .empty
-                }
-            }
+            loadConditions()
         })
         .onChange(of: appState.conditions) { _ in
             updateViewModel()
@@ -82,6 +71,21 @@ struct CityView: View {
                 return
             }
             updateViewModel()
+        }
+    }
+    
+    private func loadConditions() {
+        guard let cityKey = appState.selectedCity?.key else {
+            screenState = .initial
+            return
+        }
+        Task {
+            do {
+                screenState = .loading
+                try await useCases.getConditions.execute(cityKey: cityKey)
+            } catch {
+                screenState = .empty
+            }
         }
     }
     
