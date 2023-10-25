@@ -18,7 +18,7 @@ enum Router {
         // 0DyjFgu04fdv3eKLkxHEuvA01Or4tkub
         // fqd9KZE3yuxP6JBLF85wnl4lis8qoUCX
         // WFWyMD4unc6dDHh6qAdEUGJ5zD8I8c5a
-        return URLQueryItem(name: "apikey", value: "WFWyMD4unc6dDHh6qAdEUGJ5zD8I8c5a")
+        return URLQueryItem(name: "apikey", value: "0DyjFgu04fdv3eKLkxHEuvA01Or4tkub")
     }
 
     var host: String {
