@@ -14,7 +14,11 @@ enum Router {
 
     var apiKey: URLQueryItem {
         // API keys should be stored safely, normally I use git-secret (but in this demo lets keep it here)
-        return URLQueryItem(name: "apikey", value: "fqd9KZE3yuxP6JBLF85wnl4lis8qoUCX")
+        // NOTE: API is limited to 50 free requests daily, so here are some spare API keys if needed:
+        // 0DyjFgu04fdv3eKLkxHEuvA01Or4tkub
+        // fqd9KZE3yuxP6JBLF85wnl4lis8qoUCX
+        // WFWyMD4unc6dDHh6qAdEUGJ5zD8I8c5a
+        return URLQueryItem(name: "apikey", value: "WFWyMD4unc6dDHh6qAdEUGJ5zD8I8c5a")
     }
 
     var host: String {
