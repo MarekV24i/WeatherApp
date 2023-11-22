@@ -10,13 +10,13 @@
 		BB8CFBAF2AF5284A00B41648 /* DataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = BB8CFBAE2AF5284A00B41648 /* DataLayer */; };
 		BB8CFBB12AF5289E00B41648 /* DomainLayer in Frameworks */ = {isa = PBXBuildFile; productRef = BB8CFBB02AF5289E00B41648 /* DomainLayer */; };
 		BB8CFBB32AF528A100B41648 /* PresentationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = BB8CFBB22AF528A100B41648 /* PresentationLayer */; };
-		BB8CFBB52AF539C800B41648 /* DataLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8CFBB42AF539C800B41648 /* DataLayerTests.swift */; };
 		EA9F686D2AE6A3A600CD246E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = EA9F686C2AE6A3A600CD246E /* Localizable.xcstrings */; };
 		EAD8608A2AD959C9003B277C /* WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860892AD959C9003B277C /* WeatherApp.swift */; };
 		EAD8608E2AD959D9003B277C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD8608D2AD959D9003B277C /* Assets.xcassets */; };
 		EAD860912AD959D9003B277C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD860902AD959D9003B277C /* Preview Assets.xcassets */; };
 		EAD860A52AD959D9003B277C /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860A42AD959D9003B277C /* WeatherAppUITests.swift */; };
 		EAD860A72AD959D9003B277C /* WeatherAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD860A62AD959D9003B277C /* WeatherAppUITestsLaunchTests.swift */; };
+		EAE543BC2B0E55000079652B /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE543BB2B0E55000079652B /* WeatherAppTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BB8CFBB42AF539C800B41648 /* DataLayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataLayerTests.swift; path = DataLayer/Tests/DataLayerTests/DataLayerTests.swift; sourceTree = SOURCE_ROOT; };
 		EA9F686C2AE6A3A600CD246E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		EAD860862AD959C9003B277C /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD860892AD959C9003B277C /* WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApp.swift; sourceTree = "<group>"; };
@@ -48,6 +47,7 @@
 		EAD860A42AD959D9003B277C /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		EAD860A62AD959D9003B277C /* WeatherAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EAD860DF2ADD3AFE003B277C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EAE543BB2B0E55000079652B /* WeatherAppTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAppTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +129,7 @@
 		EAD860992AD959D9003B277C /* WeatherAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				BB8CFBB42AF539C800B41648 /* DataLayerTests.swift */,
+				EAE543BB2B0E55000079652B /* WeatherAppTests.swift */,
 			);
 			path = WeatherAppTests;
 			sourceTree = "<group>";
@@ -219,6 +219,7 @@
 					};
 					EAD860952AD959D9003B277C = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1500;
 						TestTargetID = EAD860852AD959C9003B277C;
 					};
 					EAD8609F2AD959D9003B277C = {
@@ -287,7 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB8CFBB52AF539C800B41648 /* DataLayerTests.swift in Sources */,
+				EAE543BC2B0E55000079652B /* WeatherAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +506,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7RP79N74U9;
@@ -514,6 +516,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mv.weatherapp.WeatherAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WeatherApp";
@@ -525,6 +528,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7RP79N74U9;
