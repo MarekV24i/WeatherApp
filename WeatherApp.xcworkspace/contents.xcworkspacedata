@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:DomainLayer">
+   </FileRef>
+   <FileRef
+      location = "group:PresentationLayer">
+   </FileRef>
+   <FileRef
+      location = "group:DataLayer">
+   </FileRef>
+   <FileRef
+      location = "container:WeatherApp.xcodeproj">
+   </FileRef>
+</Workspace>

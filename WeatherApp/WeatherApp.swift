@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import DataLayer
+import DomainLayer
+import PresentationLayer
 
 @main
 struct WeatherApp: App {
