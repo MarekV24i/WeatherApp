@@ -66,10 +66,10 @@ public class MockupNetworkRepository: NetworkRepositoryProtocol {
     public init() {}
 
     public func searchCity(term: String?) async throws -> [DomainLayer.CityModel] {
-        []
+        MockupData.mockCities
     }
 
     public func currentCondtions(cityKey: String) async throws -> [DomainLayer.ConditionsModel] {
-        []
+        return [MockupData.mockConditions]
     }
 }
